@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Web Programcılığı Testi</title>
+    <style>
+        body { font-family: sans-serif; margin: 20px; }
+        fieldset { margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+
+    <h1>Web Programcılığı Bilgi Testi</h1>
+    <p>Lütfen aşağıdaki soruları cevaplayınız.</p>
+
+    <form action="sonuc.html" method="GET">
+        
+        <fieldset>
+            <legend>Bilgi Düzeyi</legend>
+
+            <p>Bildiğiniz teknolojileri işaretleyin:</p>
+            <input type="checkbox" id="tek1" name="teknoloji" value="html">
+            <label for="tek1">HTML</label><br>
+            
+            <input type="checkbox" id="tek2" name="teknoloji" value="css">
+            <label for="tek2">CSS</label><br>
+
+            <input type="checkbox" id="tek3" name="teknoloji" value="javascript">
+            <label for="tek3">JavaScript</label><br>
+        
+            <p>Favori programlama dilinizi seçin:</p>
+            <select id="dilSecimi" name="favori_dil">
+                <option value="python">Python</option>
+                <option value="javascript">JavaScript</option>
+                <option value="csharp">C#</option>
+                <option value="diger">Diğer</option>
+            </select>
+
+        </fieldset>
+
+        <fieldset>
+            <legend>Diğer Girdiler</legend>
+
+            <p>Web programcılığına olan ilginizi 1-100 arasında derecelendirin:</p>
+            <label for="ilgi">Düşük</label>
+            <input type="range" id="ilgi" name="ilgi_duzeyi" min="1" max="100" value="50">
+            <label for="ilgi">Yüksek</label>
+
+            <p>Kendinizi geliştirmek için nedenlerinizi yazın:</p>
+            <textarea id="metinAlani" name="nedenler" rows="5" cols="50"></textarea><br>
+
+            <p>Favori arayüz renginizi seçin:</p>
+            <input type="color" id="renk" name="favori_renk" value="#0000ff">
+
+            <p>Projeyi yükleyeceğiniz tarihi seçin:</p>
+            <input type="datetime-local" id="projeTarihi" name="proje_tarihi">
+
+            <p>Ödev dosyanızı yükleyin (isteğe bağlı):</p>
+            <input type="file" id="dosya" name="odev_dosyasi">
+        </fieldset>
+
+        <br>
+        <input type="submit" value="Testi Gönder">
+        
+        <input type="reset" value="Temizle">
+
+    </form>
+
+</body>
+</html>
