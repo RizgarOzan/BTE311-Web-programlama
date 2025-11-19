@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab Görevi - Resim Gizle/Göster</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .top-image {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+        }
+
+        .top-image img {
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .bottom-images {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .image-box {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .image-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .image-box img {
+            max-width: 150px;
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            transition: opacity 0.3s;
+        }
+
+        .image-box img.hidden {
+            opacity: 0;
+            height: 0;
+            margin: 0;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .btn-hide {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .btn-hide:hover {
+            background: #c0392b;
+            transform: scale(1.05);
+        }
+
+        .btn-show {
+            background: #27ae60;
+            color: white;
+        }
+
+        .btn-show:hover {
+            background: #229954;
+            transform: scale(1.05);
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        .reload-btn {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .reload-btn button {
+            background: #3498db;
+            color: white;
+            padding: 15px 30px;
+            font-size: 16px;
+        }
+
+        .reload-btn button:hover {
+            background: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lab Görevi - Resim Gizle/Göster</h1>
+    
+    <div class="container">
+        <div class="top-image">
+            <img id="topImage" src="" alt="Üst Resim">
+        </div>
+
+        <div class="bottom-images">
+            <div class="image-box">
+                <img id="image1" src="" alt="Resim 1">
+                <div class="button-group">
+                    <button class="btn-hide" onclick="hideImage(1)">Gizle</button>
+                    <button class="btn-show" onclick="showImage(1)">Göster</button>
+                </div>
+            </div>
+
+            <div class="image-box">
+                <img id="image2" src="" alt="Resim 2">
+                <div class="button-group">
+                    <button class="btn-hide" onclick="hideImage(2)">Gizle</button>
+                    <button class="btn-show" onclick="showImage(2)">Göster</button>
+                </div>
+            </div>
+
+            <div class="image-box">
+                <img id="image3" src="" alt="Resim 3">
+                <div class="button-group">
+                    <button class="btn-hide" onclick="hideImage(3)">Gizle</button>
+                    <button class="btn-show" onclick="showImage(3)">Göster</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="reload-btn">
+            <button onclick="loadRandomImages()">🔄 Yeni Resimler Yükle</button>
+        </div>
+    </div>
+
+    <script>
+        // Resim havuzu - 10 farklı resim
+        const imagePool = [
+            'img/0x1900-000000-80-0-0 (1).jpg',
+            'img/0x1900-000000-80-0-0.jpg',
+            'img/1900x1900-000000-80-0-0.jpg',
+            'img/1_K9hvnD5nbm463MZyFj19Mw.jpg',
+            'img/81QL1T0v1TL._UF1000,1000_QL80_.jpg',
+            'img/Inrainbowscover.png',
+            'img/Paramore_-_Riot!.png',
+            'img/RadioheadOKComputer600-2.jpg',
+            'img/Radioheadthebends.png',
+            'img/The_Neighbourhood_-_Wiped_Out.jpg'
+        ];
+
+        // Rastgele resim seçme fonksiyonu
+        function getRandomImages() {
+            const shuffled = [...imagePool].sort(() => Math.random() - 0.5);
+            return shuffled.slice(0, 4);
+        }
+
+        // Resimleri yükleme fonksiyonu
+        function loadRandomImages() {
+            const selectedImages = getRandomImages();
+            
+            document.getElementById('topImage').src = selectedImages[0];
+            document.getElementById('image1').src = selectedImages[1];
+            document.getElementById('image2').src = selectedImages[2];
+            document.getElementById('image3').src = selectedImages[3];
+
+            // Tüm resimleri göster
+            for (let i = 1; i <= 3; i++) {
+                showImage(i);
+            }
+        }
+
+        // Resmi gizleme fonksiyonu
+        function hideImage(imageNum) {
+            const img = document.getElementById('image' + imageNum);
+            img.classList.add('hidden');
+        }
+
+        // Resmi gösterme fonksiyonu
+        function showImage(imageNum) {
+            const img = document.getElementById('image' + imageNum);
+            img.classList.remove('hidden');
+        }
+
+        // Sayfa yüklendiğinde resimleri yükle
+        window.onload = loadRandomImages;
+    </script>
+</body>
+</html>
