@@ -5,73 +5,189 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BTE311 - Web Tabanlı Programlama Ödevleri</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body { 
             font-family: 'Poppins', sans-serif;
-            margin: 0; 
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-attachment: fixed;
             color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             min-height: 100vh;
+            padding: 20px;
         }
+
         .container {
-            max-width: 700px;
-            width: 90%;
-            margin: 2em auto;
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
             padding: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-            border: 1px solid rgba(255, 255, 255, 0.18);
         }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeInDown 0.8s ease;
+        }
+
         h1 { 
             color: #fff; 
-            text-align: center;
+            font-weight: 700;
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+            letter-spacing: -1px;
+        }
+
+        .subtitle {
+            font-size: 1.1em;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .section-title {
+            font-size: 1.6em;
             font-weight: 600;
-            font-size: 2.5em;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #fff;
             text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
-        ul { 
-            list-style-type: none; 
-            padding: 0; 
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
         }
-        li { 
-            margin-bottom: 15px;
-        }
-        a { 
+
+        .project-link {
             display: block;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            text-decoration: none; 
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            text-decoration: none;
             color: #fff;
             font-weight: 400;
-            font-size: 1.2em;
+            font-size: 1.1em;
             text-align: center;
             transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
         }
-        a:hover { 
-            background-color: rgba(255, 255, 255, 0.4);
+
+        .project-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .project-link:hover::before {
+            left: 100%;
+        }
+
+        .project-link:hover {
+            background: rgba(255, 255, 255, 0.3);
             transform: translateY(-5px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            .container {
+                padding: 20px;
+            }
+            .section {
+                padding: 20px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Rızgar Ozan - BTE311 Web Programlama Ödevleri</h1>
-        <ul>
-            <li><a href="Odev-1-Formlar/Form1.html" target="_blank">Ödev 1 - Form</a></li>
-            <li><a href="Odev-2-CSS/odev2.html" target="_blank">Ödev 2 - CSS Çalışmaları</a></li>
-            <li><a href="Odev-3-Daire animasyon/odev3.html" target="_blank">Ödev 3 - Daire Animasyon</a></li>
-            <li><a href="Lab-8-Kartlar/Lab8 Kartlar .html" target="_blank">Lab-8-Kartlar</a></li>
-            <li><a href="Lab-9-script/Lab-9-script.html" target="_blank">Lab 9 - Resim Galerisi</a></li>
-        </ul>
+        <div class="header">
+            <h1>Rızgar Ozan</h1>
+            <p class="subtitle">BTE311 - Web Tabanlı Programlama Ödevleri</p>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">📚 Ödevler ve Lab Çalışmaları</h2>
+            <div class="projects-grid">
+                <a href="Odev-1-Formlar/Form1.html" target="_blank" class="project-link">Ödev 1 - Form</a>
+                <a href="Odev-2-CSS/odev2.html" target="_blank" class="project-link">Ödev 2 - CSS Çalışmaları</a>
+                <a href="Odev-3-Daire animasyon/odev3.html" target="_blank" class="project-link">Ödev 3 - Daire Animasyon</a>
+                <a href="Lab-8-Kartlar/Lab8 Kartlar .html" target="_blank" class="project-link">Lab 8 - Kartlar</a>
+                <a href="Lab-9-script/Lab-9-script.html" target="_blank" class="project-link">Lab 9 - Resim Galerisi</a>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">🎮 JavaScript Oyun Ödevi</h2>
+            <div class="projects-grid">
+                <a href="JavaScript Oyun Ödevi/ilk versiyon/index.html" target="_blank" class="project-link">İlk Versiyon</a>
+                <a href="JavaScript Oyun Ödevi/son versiyon/index.html" target="_blank" class="project-link">Son Versiyon</a>
+            </div>
+        </div>
     </div>
 </body>
 </html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sinek Avcısı Oyunu</title>
+  <link rel="stylesheet" href="app.css" />
+</head>
+
+<body>
+  <div class="game-container">
+    <h1>🪰 Sinek Avcısı 🎮</h1>
+    
+    <div class="controls">
+      <div class="control-group">
+        <label for="gameSpeed">Hız:</label>
+        <input type="number" id="gameSpeed" value="5" min="1" max="9" step="1" />
+      </div>
+      <button id="gameStart" class="start-btn">Oyunu Başlat</button>
+    </div>
+
+    <div class="score-panel">
+      <div class="score-item">
+        <span class="score-label">Skor:</span>
+        <span id="currentScore" class="score-value">0</span>
+      </div>
+      <div class="score-item">
+        <span class="score-label">En Yüksek:</span>
+        <span id="highScore" class="score-value">0</span>
+      </div>
+      <div class="score-item">
+        <span class="score-label">Combo:</span>
+        <span id="comboCount" class="score-value">0</span>
+      </div>
+      <div class="score-item">
+        <span class="score-label">Seviye:</span>
+        <span id="level" class="score-value">1</span>
+      </div>
+    </div>
+
+    <div class="points-legend">
+      <h3>🪰 Sinek Puanları</h3>
+      <div class="legend-items" id="legendItems"></div>
+    </div>
+
+    <canvas id="gameArea"></canvas>
+    
+    <div id="gameOverMessage" class="game-over hidden">
+      <h2>Oyun Bitti!</h2>
+      <p>Skorunuz: <span id="finalScore">0</span></p>
+      <button onclick="location.reload()" class="restart-btn">Tekrar Oyna</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
+
